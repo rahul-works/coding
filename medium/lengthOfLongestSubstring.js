@@ -22,10 +22,11 @@ var lengthOfLongestSubstring = function(s) {
     }
     return maxLength;
 };
-console.log(lengthOfLongestSubstring("abcabcbb")); //3
-console.log(lengthOfLongestSubstring("bbbbb")); //1
-console.log(lengthOfLongestSubstring("pwwkew")); //3
-console.log(lengthOfLongestSubstring("aab")); //2
-console.log(lengthOfLongestSubstring("dvdf")); //3
-console.log(lengthOfLongestSubstring("ohvhjdml")); //6
-console.log(lengthOfLongestSubstring("pwwkew")); //3
+// console.log(lengthOfLongestSubstring("abcabcbb")); //3
+// console.log(lengthOfLongestSubstring("bbbbb")); //1
+// console.log(lengthOfLongestSubstring("pwwkew")); //3
+// console.log(lengthOfLongestSubstring("aab")); //2
+// console.log(lengthOfLongestSubstring("dvdf")); //3
+// console.log(lengthOfLongestSubstring("ohvhjdml")); //6
+// console.log(lengthOfLongestSubstring("pwwkew")); //3
+module.exports = lengthOfLongestSubstring;
