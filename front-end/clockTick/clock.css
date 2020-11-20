@@ -1,36 +1,56 @@
 #clock {
-    border: 2px solid black;
-    height :200px;
-    width :200px;
-    border-radius: 50%;
-    margin-left: 100px;
-    position:relative;
-  }
-  
-  #hour {
-    border: 3px solid black;
-    width: 40px;
-    position: absolute;
-    left: 100px;
-    top: 100px;
-    transform: rotate(20deg);
-    transform-origin: left;
-  }
-  
-  #min {
-    border: 2px solid black;
-    width: 60px;
-    position: absolute;
-    left: 100px;
-    top: 100px;
-    transform-origin: left;
-  }
-  
-  #sec {
-    border: 1px solid black;
-    width: 90px;
-    position: absolute;
-    left: 100px;
-    top: 100px;
-    transform-origin: left;
-  }
+  border: 2px solid black;
+  height :200px;
+  width :200px;
+  border-radius:50%;
+  margin-left: 100px;
+  position:relative;
+}
+
+#hour {
+  border: 3px solid black;
+  width: 40px;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  transform-origin: left;
+}
+
+#min {
+  border: 2px solid black;
+  width: 60px;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  transform-origin: left;
+}
+
+#sec {
+  border: 1px solid black;
+  width: 90px;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  transform-origin: left;
+}
+
+#c12 {
+  position: absolute;
+  left: 95px;
+  top: 5px;
+}
+#c3 {
+  position: absolute;
+  left: 180px;
+  top: 90px;
+}
+#c6 {
+  position: absolute;
+  left: 95px;
+  top: 180px;
+}
+#c9 {
+  position: absolute;
+  left: 10px;
+  top: 90px;
+}
