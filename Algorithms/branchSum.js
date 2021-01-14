@@ -1,5 +1,6 @@
 function binaryTree(value) {
     this.val = value;
+    this.visited = 0;
     this.left = null;
     this.right = null;
 }
@@ -10,22 +11,24 @@ function branchSum(root) {
     let branchSum = [];
     if (root) {
         eachNodeSum = root.val;
-        dfs.push ([root, eachNodeSum]);
+        dfs.push ([root, eachNodeSum, 0]);
         while (dfs.length>0) {
-            let curr = dfs.pop();
-            eachNodeSum = curr[1];
-            curr = curr[0];
-            while (curr.left) {
-                eachNodeSum += curr.left.val;
-                dfs.push([curr.left, eachNodeSum]);
-                curr = curr.left;
+            while (root.left && root.visited === 0) {
+                eachNodeSum += root.left.val;
+                dfs.push([root.left, eachNodeSum]);
+                root = root.left;
             }
-            if (curr.right) {
-                eachNodeSum += curr.right.val;
-                dfs.push([curr.right, eachNodeSum]);
-                curr = curr.right;
-            } else {
-                branchSum.push(eachNodeSum);
+            let temp = dfs.pop();
+            root = temp[0];
+            eachNodeSum = temp[1];
+            root.visited = 1;
+            if (root.left === null && root.right === null) {
+                branchSum.push(temp[1]);    
+            } 
+            if (root.right) {
+                eachNodeSum += root.right.val;
+                dfs.push([root.right, eachNodeSum]);
+                root = root.right;
             }
         }
     }   
@@ -38,16 +41,16 @@ function branchSumR(root) {
     calculateRunningSums(root, 0, sums);
     return sums;
 }
-function calculateRunningSums(node, currentSum, sums) {
-    if (node)
-        return
-    currentSum += node.val;
+function calculateRunningSums(node, rootentSum, sums) {
+    if (!node)
+        return;
+    rootentSum += node.val;
     if (node.left === null && node.right === null) {
-        sums.push(currentSum);
-        return 
+        sums.push(rootentSum);
+        return;
     }
-    calculateRunningSums(node.left, currentSum, sums);
-    calculateRunningSums(node.right, currentSum, sums);
+    calculateRunningSums(node.left, rootentSum, sums);
+    calculateRunningSums(node.right, rootentSum, sums);
     
 }
 let root = new binaryTree(1);
@@ -61,4 +64,5 @@ root.left.left.left = new binaryTree(8);
 root.left.left.right = new binaryTree(9);
 root.left.right.left = new binaryTree(10);
 // console.log(root);
-console.log(branchSumR(root));
+// console.log(branchSumR(root));
+console.log(branchSum(root));

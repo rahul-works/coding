@@ -28,5 +28,5 @@ function dfs(arr) {
         // console.log(stack);
     }
 }
-let arr = [1, 5, 6, 2, 3, 8];
+let arr = [1, 2, 3, 4, 5, 6,7, 8, 9, 10];
 dfs(arr); // 2 5 3 1 8 6
