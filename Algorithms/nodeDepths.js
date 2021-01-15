@@ -36,10 +36,10 @@ function nodeDepthsDFSI(root){ // dfs iterative
 }
 // time O(N) | space O(H)
 function nodeDepthRecursion(root, d=0) {
-    if (root) {
-         return d + nodeDepthRecursion(root.left, d+1) + nodeDepthRecursion(root.right, d+1);
+    if (!root) {
+        return 0;
     } 
-    return 0;
+    return d + nodeDepthRecursion(root.left, d+1) + nodeDepthRecursion(root.right, d+1);
 }
 function nodeDepths(root) {
     return nodeDepthRecursion(root, 0);
