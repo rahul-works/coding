@@ -35,7 +35,7 @@ function nodeDepthsDFSI(root){ // dfs iterative
     return sumOfDepth;
 }
 // time O(N) | space O(H)
-function nodeDepthRecursion(root, d) {
+function nodeDepthRecursion(root, d=0) {
     if (root) {
          return d + nodeDepthRecursion(root.left, d+1) + nodeDepthRecursion(root.right, d+1);
     } 
@@ -44,6 +44,8 @@ function nodeDepthRecursion(root, d) {
 function nodeDepths(root) {
     return nodeDepthRecursion(root, 0);
 }
+
+
 function binaryTree(value) {
     this.val = value;
     this.visited = 0;
@@ -62,4 +64,5 @@ root.left.left.left = new binaryTree(8);
 root.left.left.right = new binaryTree(9);
 // root.left.right.left = new binaryTree(10);
 // console.log(nodeDepthsDFSI(root));
-console.log(nodeDepths(root));
+// console.log(nodeDepths(root));
+console.log(nodeDepthRecursion(root));
