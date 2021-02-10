@@ -8,8 +8,8 @@ function doubleLinkedList() {
     this.head = null;
     this.tail = null;
 
-    function setHead(node) {
-        if (this.head === null) {
+    this.setHead = function (node) {
+        if (!this.head) {
             this.head = node;
             this.tail = node;
             return; 
@@ -17,14 +17,14 @@ function doubleLinkedList() {
         this.insertBefore(this.head, node);
     }
 
-    function setTail(node) {
-        if (this.tail === null) {
+    this.setTail = function (node) {
+        if (!this.tail) {
             this.setHead(node);
             return; 
         }
         this.insertAfter(this.tail, node);
     }
-    function containsNodeWithValue(value) {
+    this.containsNodeWithValue = function (value) {
         let node = this.head;
         while (node) {
             if (node.value === value) {
@@ -35,7 +35,7 @@ function doubleLinkedList() {
         return false;
     }
 
-    function removeNodeValue(target) {
+    this.removeNodeValue = function (target) {
         let node = this.head;
         while (node) {
             let nodeToRemove = node;
@@ -46,17 +46,17 @@ function doubleLinkedList() {
         }
     }
 
-    function remove(node) {
+    this.remove = function (node) {
         if (this.head == node) {
             this.head = this.head.next;
         }
         if (this.tail == node) {
-            this.tail = this.node.previous;
+            this.tail = this.tail.previous;
         }
         this.removeNodeBinding(node);
     }
 
-    function removeNodeBinding(node) {
+    this.removeNodeBinding = function (node) {
         if (node.previous){
             node.previous.next = node.next;
         } 
@@ -68,105 +68,116 @@ function doubleLinkedList() {
         delete node;
     }
 
-    function insertBefore(node, nodeToInsert) {
-        if (nodeToInsert == this.head && nodeToInsert == this.tail) {
-            return;
-        }
-        this.remove(nodeToInsert);
-        nodeToInsert.previous = node.previous;
-        nodeToInsert.next = node.next;
-        if (node.previous === null) {
-            this.head = nodeToInsert;
-        } else {
-            node.previous.next = nodeToInsert;
-            node.previous = nodeToInsert;
-        }
-    }
+    
 
-    function insertAtPosition (position, nodeToInsert) {
+    this.insertAtPosition = function  (position, nodeToInsert) {
         if (position === 1) {
             this.setHead(nodeToInsert);
             return;
         }
         let node = this.head;
         let currPosition = 0;
-        while (node !== null && currPosition<position) {
+        while (node && currPosition<position) {
             node = node.next;
             currPosition += 1;
         }
-        if (node !== null)
+        if (node)
             this.insertBefore(node, nodeToInsert);
         else 
             this.setTail(nodeToInsert);
     }
 
-    function insertAfter(node, nodeToInsert) {
+    this.insertAfter = function (node, nodeToInsert) {
         if (nodeToInsert == this.head && nodeToInsert == this.tail) {
             return;
         }
         this.remove(nodeToInsert);
         nodeToInsert.previous = node;
         nodeToInsert.next = node.next;
-        if (node.next === null) {
+        if (!node.next) {
             this.tail = nodeToInsert;
         } else {
             node.next.previous = nodeToInsert;
             node.next = nodeToInsert;
         }
     }
+
+    this.insertBefore = function (node, nodeToInsert) {
+      if (nodeToInsert == this.head && nodeToInsert == this.tail) {
+          return;
+      }
+      this.remove(nodeToInsert);
+      nodeToInsert.previous = node.previous;
+      nodeToInsert.next = node;
+      if (!node.previous) {
+          this.head = nodeToInsert;
+      } else {
+          node.previous.next = nodeToInsert;
+          node.previous = nodeToInsert;
+      }
+  }
 }
 
 
+// let node = new node(1);
+// let tail = head;
 
-function insertAtEnd (tail, value) {
-    let tempNode = new node(value);
-    if (tail) {
-        tail.next = tempNode;
-        tempNode.prev = tail;
-    }
-    tail = tempNode;
-    return tail;
-}
+// tail = insertAtEnd(tail, 2);
+// tail = insertAtEnd(tail, 3);
+// tail = insertAtEnd(tail, 4);
+// tail = insertAtEnd(tail, 5);
+// console.log(head);
 
-function insertAtPosition (head, value, position) {
-    let tempNode = new node(value);
-    let prev = null;
-    for (let i = 0; i < position; i++) {
-        prev = head;
-        head = head.next;
-    }
-    if (head && prev) {
-        head.prev = tempNode;
-        tempNode.next = head;
-        prev.next = tempNode;
-        tempNode.prev = prev;
-    } if (head) {
-        insertAtStart (head, value);
-    } else {
-        insertAtEnd (head, value);
-    }   
+let dll = new doubleLinkedList()
+let newNode = new node(1)
+dll.setHead(newNode);
 
-}
+newNode = new node(2)
+dll.tail.next = newNode;
+newNode.previous = dll.tail;
+dll.tail = newNode;
+newNode.next = null;
 
-function search(head, target) {
-    while (head) {
-        if (head.value === target) {
-            return true;
-        }
-        head = head.next;
-    }
-    return false;
-}
+newNode = new node(3)
+dll.tail.next = newNode;
+newNode.previous = dll.tail;
+dll.tail = newNode;
+newNode.next = null;
 
+newNode = new node(4)
+dll.tail.next = newNode;
+newNode.previous = dll.tail;
+dll.tail = newNode;
+newNode.next = null;
 
+newNode = new node(5)
+dll.tail.next = newNode;
+newNode.previous = dll.tail;
+dll.tail = newNode;
+newNode.next = null;
 
+newNode = new node(6)
+dll.tail.next = newNode;
+newNode.previous = dll.tail;
+dll.tail = newNode;
+newNode.next = null;
 
-let head = new node(1);
-let tail = head;
-tail = insertAtEnd(tail, 2);
-tail = insertAtEnd(tail, 3);
-tail = insertAtEnd(tail, 4);
-tail = insertAtEnd(tail, 5);
-console.log(head);
+newNode = new node(7)
+dll.tail.next = newNode;
+newNode.previous = dll.tail;
+dll.tail = newNode;
+newNode.next = null;
 
+console.log(dll.head);
+dll.remove(dll.head);
+dll.remove(dll.tail);
+console.log(dll.head);
+dll.insertAfter(dll.head.next, dll.head);
+console.log(dll.head);
 
+dll.insertBefore( dll.head, dll.head.next);
+ console.log(dll.head);
+// console.log(dll.head.next);
+dll.insertAtPosition(5, dll.head.next);
+// console.log(dll.head);
+// console.log(dll.head.next);
