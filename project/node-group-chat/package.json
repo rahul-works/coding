@@ -4,14 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "start-test 8080 cy:run",
+    "start": "node .",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "dev": "start-test 8080 cy:open",
+    "pretty": "prettier --write 'cypress/**/*.js' index.js"
   },
   "author": "rahul thakur",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^7.5.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "socket.io": "^4.1.2"
+  },
+  "devDependencies": {
+    "cypress": "7.5.0",
+    "prettier": "2.3.1",
+    "socket.io-client": "4.1.2",
+    "start-server-and-test": "^1.12.5"
   }
 }

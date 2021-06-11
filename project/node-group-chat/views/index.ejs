@@ -13,7 +13,12 @@
       #messages li:nth-child(odd) { background: #eee;}
     </style>
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="../../socket.io/socket.io.js"></script>
+    <!-- Where is this file? where is ../../ -->
+    <script src="../../socket.io/socket.io.js"></script> 
+     
+   
+    <!-- <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"></script>  -->
+
   </head>
   <body>
     <ul id="messages"></ul>
@@ -26,7 +31,8 @@
       <button>Send</button>
     </form>
     <script>
-      var socket = io.connect('http://localhost:8080');
+      // keys 
+      var socket = io.connect('http://localhost:8080'); //on - receive msg from server ; emit send message to server
       $('form').submit(function(e) {
         e.preventDefault();
         socket.emit('chat_message', $('#txt').val());

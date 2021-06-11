@@ -3,7 +3,7 @@ it('show the message', () => {
     onBeforeLoad(win) {
       cy.stub(win, 'prompt').returns('Cy');
     }
-  })
-  cy.get('#txt').type('Hello there{enter');
-  cy.contains('messages li', 'Hello there').contains('strong', 'Cy');
+  });
+  cy.get('#txt').type('Hello there{enter}');
+  cy.contains('Hello there');
 });
