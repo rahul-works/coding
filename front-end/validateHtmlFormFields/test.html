@@ -1,0 +1,50 @@
+<html>
+  <body>
+    <script src="./validate.js" ></script>
+    <script>
+      function checkFields() {
+        data = {
+          'email':document.getElementById("email").value,
+          'name':document.getElementById("name").value,
+          'other':document.getElementById("other").value,
+          'numeric':document.getElementById("numeric").value,
+          'alpha_numeric':document.getElementById("alpha_numeric").value,
+        };
+        if (!Validate.validateEmptyString(data)) {
+          alert(Validate.allMandatoryFieldError);
+        }
+        if (!Validate.validateEmail(data.email)) {
+          alert(Validate.emailFieldError);
+        }
+        if (!Validate.validateAddress(data.name)) {
+          alert(Validate.addressFieldError);
+        }
+        if (!Validate.validateAlphaNumericQuotesOthers(data.other)) {
+          alert(Validate.otherFieldError);
+        }
+        if (!Validate.validateNumeric(data.numeric)) {
+          alert(Validate.numericFieldError);
+        }
+        if (!Validate.validateAlphaNumeric(data.alpha_numeric)) {
+          alert(Validate.aplhaNumericFieldError);
+        }
+        alert(Validate.Success);
+      }
+      </script>
+    <form">
+      Email: test@test.com
+      <input type="hidden" name="email" id="email" value="test@test.com"/> <br/>
+      Name: test
+      <input type="hidden" name="name" id="name" value="test"/> <br/>
+      Address: address
+      <input type="hidden" name="address" id="address" value="address"/><br/>
+      Numeric: 23232
+      <input type="hidden" name="numeric" id="numeric" value="23232"/><br/>
+      Alpha Numeric: test233
+      <input type="hidden" name="alpha_numeric" id="alpha_numeric" value="test233"/><br/>
+      Other: 435435'jhdkjgf
+      <input type="hidden" name="other" id="other" value="435435'jhdkjgf" /><br/>
+      <input type="submit" value="submit" onclick="checkFields()"/>
+    </form>
+  </body>
+</html>
