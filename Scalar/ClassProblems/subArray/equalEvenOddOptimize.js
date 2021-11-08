@@ -16,7 +16,7 @@ function equalEvenOddOptimize(A){
       oddPFSum[i] = oddPFSum[i-2]+A[i];
     }
     totalSum += A[i];
-  //  /    console.log(evenPFSum);
+  //  /    console.log(evenPFSum); sdhfkhdsk
   // console.log(oddPFSum);
   }
   // console.log(evenPFSum);
