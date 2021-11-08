@@ -6,7 +6,10 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "kafkajs": "^1.15.0",
+    "start-server-and-test": "^1.12.5"
+  },
   "devDependencies": {
     "mocha": "^7.2.0"
   },

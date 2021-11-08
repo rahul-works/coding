@@ -33,7 +33,6 @@ console.log(ExOr, ExOr.toString(2), checkSetBit(ExOr));
  
  function checkSetBit(num){
      let count = 0;
-     console.log('check', num & 1, (num & 1)!==1);
      while ((num & 1 )!== 1) {
        console.log('-0');
         ++count;
@@ -41,6 +40,16 @@ console.log(ExOr, ExOr.toString(2), checkSetBit(ExOr));
      }
      return count;
  }
+ function setBitCount(num) {
+  let count = 0;
+  while (num) {
+     if (num&1 === 1){
+       ++count;
+     }
+      num = num >>1;
+  }
+  return count;
+}
 //  console.log(solve([ 2308, 1447, 1918, 1391, 2308, 216, 1391, 410, 1021, 537, 1825, 1021, 1729, 669, 216, 1825, 537, 1995, 805, 410, 805, 602, 1918, 1447, 90, 1995, 90, 1540, 1161, 1540, 2160, 1235, 1161, 602, 880, 2160, 1235, 669 ]
   // ));
   console.log(solve([ 186, 256, 102, 377, 186, 377 ]));
