@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <script>
+
+  /******* Task 2 /*******/
+  function lastNumber(num) {
+    num = num.toString();
+    const N = num.length;
+    
+    let ret = '';
+    let cur = num[N-1];
+    for (let i = N-2; i>=0; i--) {
+      if (parseInt(cur) >= parseInt(num[i])) {
+        ret = cur+ret;
+        cur = num[i];
+      } else {
+        let t = '';
+        for (let j = 0; j < ret.length; j++) {
+          t += '9';
+        }
+        ret = t;
+        ret = '9'+ret;
+        cur = parseInt(num[i])-1;
+      }
+    }
+    ret = cur + ret;
+    return parseInt(ret);
+  }
+  
+/******* Task 1 /*******/
+function evaluate(expression)
+{
+  let tokens = expression.split('');
+  let values = [];
+  let ops = [];
+  for (let i = 0; i < tokens.length; i++)
+  {
+    if (tokens[i] == ' ')
+    {
+        continue;
+    }
+    if (tokens[i] >= '0' && tokens[i] <= '9')
+    {
+      let sbuf = "";
+      while (i < tokens.length &&
+              tokens[i] >= '0' &&
+                  tokens[i] <= '9')
+      {
+          sbuf = sbuf + tokens[i++];
+      }
+      values.push(parseInt(sbuf, 10));
+      i--;
+    }
+
+    else if (tokens[i] == '(')
+    {
+      ops.push(tokens[i]);
+    }
+    else if (tokens[i] == ')')
+    {
+        while (ops[ops.length - 1] != '(')
+        {
+          values.push(applyOp(ops.pop(),
+                            values.pop(),
+                          values.pop()));
+        }
+        ops.pop();
+    } 
+    else if (tokens[i] == '+' ||
+              tokens[i] == '-' ||
+              tokens[i] == '*' ||
+              tokens[i] == '/')
+    {
+      while (ops.length > 0 &&
+                hasPrecedence(tokens[i],
+                            ops[ops.length - 1]))
+      {
+        values.push(applyOp(ops.pop(),
+                          values.pop(),
+                        values.pop()));
+      }
+      ops.push(tokens[i]);
+    }
+  }
+
+  // Entire expression has been
+  // parsed at this point, apply remaining
+  // ops to remaining values
+  while (ops.length > 0)
+  {
+      values.push(applyOp(ops.pop(),
+                        values.pop(),
+                      values.pop()));
+  }
+
+  // Top of 'values' contains
+  // result, return it
+  return values.pop();
+}
+    function hasPrecedence(op1, op2)
+    {
+      if (op2 == '(' || op2 == ')')
+      {
+          return false;
+      }
+      if ((op1 == '*' || op1 == '/') &&
+              (op2 == '+' || op2 == '-'))
+      {
+          return false;
+      }
+      else
+      {
+          return true;
+      }
+    }
+    function applyOp(op, b, a)
+    {
+        switch (op)
+        {
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '*':
+            return a * b;
+        case '/':
+            if (b == 0)
+            {
+                document.write("Cannot divide by zero");
+            }
+            return parseInt(a / b, 10);
+        }
+        return 0;
+    }
+  function compute(btn) {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    if (btn === 'CALCULATOR'){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = "30px Arial";
+      ctx.fillText(evaluate(document.getElementById("input").value), canvas.width/2, canvas.height/2);
+    }
+    else if (btn === 'LAST_POSSIBLE_VALUE'){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = "30px Arial";
+      ctx.fillText(lastNumber(document.getElementById("input").value), canvas.width/2, canvas.height/2);
+    }
+    else if (btn === 'LINE'){ /******* Task 3 /*******/
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath(); 
+      let x = canvas.width/2;
+      let y = canvas.height/2;
+      const m = parseInt(document.getElementById("input").value)
+      for (let i = 0; i < canvas.width/2; i++) { // x
+        ctx.moveTo(i, y);
+        ctx.lineTo(i,y + m);
+        y += m; 
+        ctx.stroke();
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+
+<input type="text" id="input" val="" placeholder="Input Expression" />
+<button onclick="compute('CALCULATOR')">Calculate Expression</button>
+<button onclick="compute('LAST_POSSIBLE_VALUE')">Last # checked by Peter</button>
+<button onclick="compute('LINE')">Enter TERMS for Line</button>
+<br />
+<canvas id="myCanvas" width="800" height="240" style="border:1px solid #000000;"></canvas>
+</canvas>
+</body>
+</html>
