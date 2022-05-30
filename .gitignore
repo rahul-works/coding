@@ -22,3 +22,5 @@ yarn-error.log*
 
 package-lock.json
 project/googleSheetNodejs/credentials.json
+node_modules
+package-lock.json
