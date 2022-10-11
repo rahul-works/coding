@@ -53,3 +53,5 @@ function solve(A){
   return countParty(A) % MOD;
 }
  
+console.log(solve(3));
+console.log(solve(4));

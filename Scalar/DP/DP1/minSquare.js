@@ -41,13 +41,17 @@ Explanation 2:
       let ans = Number.MAX_SAFE_INTEGER;
       for (let sq = 1; sq *sq <= N; sq++) {
         // console.log(sq)
-        ans = Math.min(ans, minSquare(N-sq*sq));
+        ans = Math.min(ans, 1+minSquare(N-sq*sq));
       }
-      dp[N] = ans+1;
+      // dp[N] = ans+1;
+      dp[N] = ans;
       // console.log(dp);	
       return dp[N];
     }
     // console.log(dp);
     return minSquare(A);
   }
+
+  console.log(countMinSquares(12));
+
  

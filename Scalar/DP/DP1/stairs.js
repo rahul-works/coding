@@ -34,7 +34,8 @@ Explanation 2:
  Distinct ways to reach top: [1 1 1], [1 2], [2 1].
 */
 
-
+// Iteration
+/*
 function climbStairs(A){
   if (A===1) {
     return 1;
@@ -50,5 +51,16 @@ function climbStairs(A){
     dp[i+1] = dp[i]+dp[i-1];
   }
   return dp[A];
-}
+}*/
  
+// Recursion 
+const dp = [];
+function climbStairs(A){
+  if (A<3) return A;
+  if (dp[A]) { return dp[A]; }
+  let ans = climbStairs(A-1) + climbStairs(A-2);
+  dp[A] = ans;
+  return ans;
+}
+console.log(climbStairs(4));
+console.log(climbStairs(5));
